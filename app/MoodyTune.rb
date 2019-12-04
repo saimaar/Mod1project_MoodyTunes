@@ -31,18 +31,20 @@ class MoodyTune
   #    prompt.select("Choose your destiny?", %w(Scorpion Kano Jax))
   # end
   def welcome
-      puts "Welcome to MoodyTune!!! \nFull of music that will fit your mood."
+      puts "Welcome to MoodyTune!!! \nFull of music that will fit your mood.".colorize(:green)
       sleep(2)
       system "clear"
   end
 
   def login_signup
-      puts 'What is your name?'
+      puts 'What is your name?'.colorize(:green)
       username = gets.chomp.downcase
-
+      sleep(1.5)
+      system "clear"
       # we use @user so we can use this variable in other methods outside of this scope..
       @user = User.find_or_create_by(username: username.downcase)
-      puts "Hello #{@user.username}"
+      puts "Hello #{@user.username} !!!!".colorize(:color => :white, :background => :red)
+      sleep(2.5)
         system "clear"
   end
 
@@ -75,7 +77,7 @@ def display_songs_and_choose(songs)
     song_choice = prompt_songs.multi_select("Here are the songs matching your mood, please choose:",songs)
     # song_choice_array = song_choice.split('!') # It is trying to find '!' to split, if not found then it split the whole sentnce.
     # test= song_choice_array.split(' by ')
-    
+
     add_to_fav_list(song_choice)
 
 
@@ -90,7 +92,7 @@ def add_to_fav_list(song_choice)
         # binding.pry
     end
 
-    puts "You have added your songs successfully!"
+    puts "You have added your songs successfully!".colorize(:green)
 
     # Adds the song_choice to the favourite list.
     # songs.each do ||
@@ -100,7 +102,7 @@ end # End of method
 
 def show_favrouite_songs
       fav_songs = fav_songs_instances
-      puts 'Would you like to see your favourite songs?'
+      puts 'Would you like to see your favourite songs?'.colorize(:green)
       input = gets.chomp
 
       if input.downcase == 'yes' # and fav_songs is empty, puts 'no fav songs.'
@@ -109,12 +111,12 @@ def show_favrouite_songs
 
         # If favrouite is empty , puts sorry message.
          if fav_songs.empty?
-            puts "Sorry, your favourite list is empty. \n Lets add songs to the list."
+            puts "Sorry, your favourite list is empty. \n Lets add songs to the list.".colorize(:green)
             ask_mood_and_show_songs
 
          else
         # If favrouite list is not empty, puts fav songs.
-          puts 'Here are your favourite songs:'
+          puts 'Here are your favourite songs:'.colorize(:green)
           fav_songs.each_with_index do |favsong, i|
             puts " #{i + 1}. #{favsong.song.songname} by #{favsong.song.artist}"
           end
@@ -122,7 +124,7 @@ def show_favrouite_songs
       elsif input.downcase == 'no'
         ask_mood_and_show_songs
       else
-          puts 'Invalid input, please enter Yes or No.'
+          puts 'Invalid input, please enter Yes or No.'.colorize(:green)
           show_favrouite_songs
     end
 end
