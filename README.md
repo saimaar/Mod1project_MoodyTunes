@@ -30,7 +30,7 @@
 9. If no ask their mood and prompt them to pick songs
 10.  pick songs
 11. play songs (if possible)
-12. ask if they want to save the songs
+12. ask if they want to save the songs****(You have added your songs successfully!)
 13. if yes add to fav list method and (exit)
 14. if no , ask if they want more music
     (if yes prompt them with mood method / if no EXIT! )

@@ -32,7 +32,7 @@ class MoodyTune
   # end
   def welcome
       puts "Welcome to MoodyTune!!! \nFull of music that will fit your mood.".colorize(:green)
-      sleep(2)
+      sleep(1)
       system "clear"
   end
 
@@ -43,8 +43,8 @@ class MoodyTune
       system "clear"
       # we use @user so we can use this variable in other methods outside of this scope..
       @user = User.find_or_create_by(username: username.downcase)
-      puts "Hello #{@user.username} !!!!".colorize(:color => :white, :background => :red)
-      sleep(2.5)
+      puts "Hello #{@user.username.capitalize} !!!!".colorize(:color => :white, :background => :red)
+      sleep(0.5)
         system "clear"
   end
 
@@ -73,10 +73,13 @@ end  # End of ask_mood_and_show_songs
 
 def display_songs_and_choose(songs)
     prompt_songs = TTY::Prompt.new
+    prompt_save = TTY::Prompt.new
+
     sleep(1)
     song_choice = prompt_songs.multi_select("Here are the songs matching your mood, please choose:",songs)
     # song_choice_array = song_choice.split('!') # It is trying to find '!' to split, if not found then it split the whole sentnce.
     # test= song_choice_array.split(' by ')
+     prompt_yes_no = prompt_save.select("Do you want to add the songs to favourite list?", ["Yes", "No"])
 
     add_to_fav_list(song_choice)
 
@@ -91,12 +94,7 @@ def add_to_fav_list(song_choice)
            Favsong.create(user_id: @user.id, song_id: song_id)
         # binding.pry
     end
-
     puts "You have added your songs successfully!".colorize(:green)
-
-    # Adds the song_choice to the favourite list.
-    # songs.each do ||
-
 end # End of method
 
 
@@ -108,18 +106,20 @@ def show_favrouite_songs
       if input.downcase == 'yes' # and fav_songs is empty, puts 'no fav songs.'
         sleep(1)
         puts "\n"
-
         # If favrouite is empty , puts sorry message.
          if fav_songs.empty?
             puts "Sorry, your favourite list is empty. \n Lets add songs to the list.".colorize(:green)
             ask_mood_and_show_songs
-
          else
         # If favrouite list is not empty, puts fav songs.
+        #prompt message "1. ADD SONGS 2. DELETE SONGS"
           puts 'Here are your favourite songs:'.colorize(:green)
           fav_songs.each_with_index do |favsong, i|
-            puts " #{i + 1}. #{favsong.song.songname} by #{favsong.song.artist}"
-          end
+            puts " #{i + 1}. #{favsong.song.songname.colorize(:red)} by #{favsong.song.artist}"
+            sleep(0.5)
+          end # loop ends
+            puts "\n"
+            update_list
         end
       elsif input.downcase == 'no'
         ask_mood_and_show_songs
@@ -128,4 +128,24 @@ def show_favrouite_songs
           show_favrouite_songs
     end
 end
-end
+def delete_song(song)
+
+  Favsong.all.select do |fav_song|
+    favsong.song.songname == song
+  end
+end #end of delete method
+
+  def update_list
+    add_delete_prompt = TTY::Prompt.new
+    update_choice = add_delete_prompt.select("Would you like tp update your playlist?",["Add Songs", "Delete Songs", "Exit"])
+
+    if update_choice.downcase == "Add Songs".downcase
+      ask_mood_and_show_songs
+    elsif update_choice.downcase == "Delete Songs"
+      delete_song
+    end
+
+  end
+
+
+end # end of moody class
