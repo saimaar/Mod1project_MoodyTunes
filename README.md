@@ -21,7 +21,7 @@
 5. Ask if the user want to see their favorite song  
 6. Give Option YES or No
 7. If Yes AND list exist Display the favorite list
-   - prompt message "1. ADD SONGS 2. DELETE SONGS"
+   - prompt message "1. ADD SONGS 2. DELETE SONGS" 3. play songs(from favsongs. sample. "Exit")
    - delete song from the list
    - add song (ask for mood , pick songs and add to fav list)
    - and ask if they want to play the song from the list
