@@ -19,8 +19,8 @@ song9 = Song.create(songname: 'Nobody Compares to You',artist:'Gryffin',mood:'Ha
 song10 = Song.create(songname: 'Quiet Storm',artist:'Zomboy',mood:'Excited',url:'https://www.youtube.com/watch?v=mFrsPePOjn4',duration:'3:45')
 song11 = Song.create(songname: 'Miss atomic bomb',artist:'The Killers',mood:'romantic',url:'https://www.youtube.com/watch?v=oofSnsGkops',duration:'3:22')
 song12 = Song.create(songname: 'wake me up when september ends', artist:'Greenday', mood:'chill',url:'https://www.youtube.com/watch?v=43NIgVtixmc',duration:'3:22')
-song13 = Song.create(songname: 'November Rain',artist:'Guns & Roses',mood:'sad',url:'https://www.youtube.com/watch?v=sZfZ8uWaOFI',duration:'3:22')
-song14 = Song.create(songname: 'Happy',artist:'Pharrell Williams',mood:'Happy',url:'https://www.youtube.com/watch?v=QQcQDbpDH_o',duration:'3:22')
+song13 = Song.create(songname: 'November Rain', artist:'Guns & Roses', mood:'sad', url:'https://www.youtube.com/watch?v=sZfZ8uWaOFI', duration:'3:22')
+song14 = Song.create(songname: 'Happy',artist:'Pharrell Williams', mood:'Happy', url:'https://www.youtube.com/watch?v=QQcQDbpDH_o', duration:'3:22')
 song15 = Song.create(songname: 'Memories',artist:'Maroon 5',mood:'excited',url:'https://www.youtube.com/watch?v=oofSnsGkops',duration:'3:22')
 song16 = Song.create(songname: 'Cant take my eyes of you', artist:'Frankie Valli', mood:'romantic',url:'https://www.youtube.com/watch?v=oofSnsGkops',duration:'3:22')
 song17 = Song.create(songname: 'Lover',artist:'taylor swift',mood:'sad',url:'https://www.youtube.com/watch?v=43NIgVtixmc',duration:'3:22')
@@ -32,10 +32,10 @@ song20 = Song.create(songname: 'baby',artist:'Justin Beiber',mood:'happy',url:'h
 favsong1 = Favsong.create(user_id: user1.id, song_id: song1.id)
 favsong2 = Favsong.create(user_id: user1.id, song_id: song2.id)
 favsong3 = Favsong.create(user_id: user1.id, song_id: song3.id)
-favsong4 = Favsong.create(user_id: user1.id, song_id: song4.id) 
+favsong4 = Favsong.create(user_id: user1.id, song_id: song4.id)
 
 
 favsong5 = Favsong.create(user_id: user2.id, song_id: song5.id)
 favsong6 = Favsong.create(user_id: user2.id, song_id: song6.id)
 favsong7 = Favsong.create(user_id: user2.id, song_id: song7.id)
-favsong8 = Favsong.create(user_id: user2.id, song_id: song8.id) 
+favsong8 = Favsong.create(user_id: user2.id, song_id: song8.id)

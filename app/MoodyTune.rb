@@ -126,24 +126,25 @@ class MoodyTune
       song_id = Song.find_by(songname: song.split(' by ').first).id
       Favsong.create(user_id: @user.id, song_id: song_id)
     end
-    puts 'You have added your songs successfully!'.colorize(:green)
+    system 'echo You have added your songs successfully! | lolcat -a -d 10'
   end # End of method
 
   # def print_fav_song
   #
   # end
   def print_fav_songs
-    puts 'Here are your favourite songs:'.colorize(:green)
+    system 'echo Here are your favourite songs: | lolcat -a -d 10'
     favourites = fav_songs_instances.each_with_index do |favsong, i|
-      puts "#{i + 1}. #{favsong.song.songname.colorize(:red)} by #{favsong.song.artist} "
+      puts " #{i + 1}. #{favsong.song.songname.colorize(:red)} by #{favsong.song.artist}"
       sleep(0.2)
+      # .colorize(:red)
     end # loop ends
   end
 
   def show_favrouite_songs
     # welcome_media
     fav_songs = fav_songs_instances
-    puts 'Would you like to see your favourite songs?'.colorize(:green)
+    system 'echo Would you like to see your favourite songs? | lolcat -a -d 10'
     input = gets.chomp
 
     if input.downcase == 'yes' # and fav_songs is empty, puts 'no fav songs.'
@@ -151,7 +152,8 @@ class MoodyTune
       puts "\n"
       # If favrouite is empty , puts sorry message.
       if fav_songs.empty?
-        puts "Sorry, your favourite list is empty. \n Lets add songs to the list.".colorize(:green)
+        system "echo Sorry, your favourite list is empty | lolcat -a -d 10"
+        system "Lets add songs to the list. | lolcat -a -d 10"
         ask_mood_and_show_songs
       else
         print_fav_songs
@@ -169,7 +171,7 @@ class MoodyTune
     elsif input.downcase == 'no'
       ask_mood_and_show_songs
     else
-      puts 'Invalid input, please enter Yes or No.'.colorize(:green)
+      system 'echo Invalid input, please enter Yes or No. | lolcat -a -d 15'
       show_favrouite_songs
   end
   end
@@ -202,7 +204,7 @@ end # end of delete method
       update_list
     elsif update_choice.downcase == 'Delete Songs'.downcase
       delete_song
-      puts 'Your Song has been deleted successfully!!'
+      system 'echo Your Song has been deleted successfully!! | lolcat -a -f'
       sleep(3)
       system 'clear'
       welcome_media
@@ -210,6 +212,8 @@ end # end of delete method
       update_list
 
     elsif update_choice.downcase == "exit".downcase
+      sleep(2)
+      system 'clear'
       puts "GOOD BYE!"
     end
   end
